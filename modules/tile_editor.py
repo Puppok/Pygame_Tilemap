@@ -86,3 +86,47 @@ class TileEditor:
 
                 # Сетка
                 pg.draw.rect(screen, (100, 100, 100), (x, y, self.tile_size, self.tile_size), 1)
+
+    def draw_ui(self, screen):
+        font = pg.font.Font(None, 28)
+
+        # Заголовок
+        title = font.render("Tilemap Editor", True, (255, 255, 255))
+        screen.blit(title, (10, 10))
+
+        # Текущий тайл
+        current_text = font.render(f"Тайл: {self.current_tile}", True, (255, 255, 255))
+        screen.blit(current_text, (10, 40))
+
+        # Палитра
+        palette_y = 70
+        for tile_id in range(1, 5):
+            x = 10
+            y = palette_y + (tile_id - 1) * 35
+
+            # Квадрат тайла
+            color = self.tile_colors[tile_id]
+            pg.draw.rect(screen, color, (x, y, 30, 30))
+
+            # Рамка (выделение текущего)
+            border_color = (255, 255, 0) if tile_id == self.current_tile else (255, 255, 255)
+            pg.draw.rect(screen, border_color, (x, y, 30, 30), 2)
+
+            # Номер
+            num_text = font.render(str(tile_id), True, (255, 255, 255))
+            screen.blit(num_text, (x + 35, y + 5))
+
+        # Подсказки
+        hints = [
+            "1-4: Выбор тайла",
+            "ЛКМ: Рисовать",
+            "ПКМ: Стирать",
+            "S: Сохранить",
+            "L: Загрузить"
+        ]
+
+        hint_y = 250
+        for hint in hints:
+            text = pg.font.Font(None, 22).render(hint, True, (200, 200, 200))
+            screen.blit(text, (10, hint_y))
+            hint_y += 25
