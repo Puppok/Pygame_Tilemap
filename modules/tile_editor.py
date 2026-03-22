@@ -56,3 +56,19 @@ class TileEditor:
             json.dump(data, file, indent = 2)
 
         print(f"Карта сохранена в {filename}")
+
+    def load_from_file(self, filename):
+        try:
+            with open(filename, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+
+            self.width = data['width']
+            self.height = data['height']
+            self.tile_size = data['tile_size']
+            self.map_data = data['map']
+
+            print(f"Карта загружена из {filename}")
+            return True
+        except FileNotFoundError:
+            print(f"Файл {filename} не найден")
+            return False
