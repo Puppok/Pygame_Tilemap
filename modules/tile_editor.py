@@ -24,3 +24,18 @@ class TileEditor:
             3: (100, 100, 100),  # Камень
             4: (255, 100, 0),  # Лава
         }
+
+    def handle_click(self, mouse_x, mouse_y, button):
+        # Учитываем смещение карты
+        adjusted_x = mouse_x - self.offset_x
+        adjusted_y = mouse_y - self.offset_y
+
+        col = adjusted_x // self.tile_size
+        row = adjusted_y // self.tile_size
+
+        if 0 <= col < self.width and 0 <= row < self.height:
+            if button == 1:  # ЛКМ - рисовать
+                self.map_data[row][col] = self.current_tile
+            elif button == 3:  # ПКМ - стирать
+                self.map_data[row][col] = 0
+                
