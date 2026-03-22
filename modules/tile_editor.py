@@ -72,3 +72,17 @@ class TileEditor:
         except FileNotFoundError:
             print(f"Файл {filename} не найден")
             return False
+
+    def draw(self, screen):
+        for row in range(self.height):
+            for col in range(self.width):
+                tile_id = self.map_data[row][col]
+                x = col * self.tile_size
+                y = row * self.tile_size
+
+                # Фон тайла
+                color = self.tile_colors.get(tile_id, (255, 0, 255))
+                pg.draw.rect(screen, color, (x, y, self.tile_size, self.tile_size))
+
+                # Сетка
+                pg.draw.rect(screen, (100, 100, 100), (x, y, self.tile_size, self.tile_size), 1)
