@@ -38,4 +38,7 @@ class TileEditor:
                 self.map_data[row][col] = self.current_tile
             elif button == 3:  # ПКМ - стирать
                 self.map_data[row][col] = 0
-                
+
+    def set_current_tile(self, tile_id):
+        if tile_id in self.tile_colors:
+            self.current_tile = tile_id
