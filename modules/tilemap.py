@@ -28,3 +28,16 @@ class TileMap:
         self.map_data = data['map']
         self.width = data['width']
         self.height = data['height']
+
+    def draw(self, screen, camera_x = 0, camera_y = 0):
+        for row in range(self.height):
+            for col in range(self.width):
+                tile_id = self.map_data[row][col]
+
+                if tile_id != 0:
+                    x = col * self.tile_size - camera_x
+                    y = row * self.tile_size - camera_y
+
+                    color = self.tile_colors.get(tile_id)
+                    if color:
+                        pg.draw.rect(screen, color, (x, y, self.tile_size, self.tile_size))
