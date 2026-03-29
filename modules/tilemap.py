@@ -1,4 +1,5 @@
 import pygame as pg
+import json
 
 class TileMap:
     def __init__(self, tile_size):
@@ -19,3 +20,11 @@ class TileMap:
         # Свойства тайлов
         self.solid_tiles = {1, 3}  # Твердые
         self.danger_tiles = {4}  # Опасные
+
+    def load_from_file(self, filename):
+        with open(filename, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+
+        self.map_data = data['map']
+        self.width = data['width']
+        self.height = data['height']
