@@ -50,3 +50,12 @@ class TileMap:
             tile_id = self.map_data[row][col]
             return tile_id in self.solid_tiles
         return False
+
+    def is_danger(self, x, y):
+        col = int(x // self.tile_size)
+        row = int(y // self.tile_size)
+
+        if 0 <= row < self.height and 0 <= col < self.width:
+            tile_id = self.map_data[row][col]
+            return tile_id in self.danger_tiles
+        return False
