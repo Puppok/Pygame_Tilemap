@@ -55,3 +55,21 @@ while running:
             editor.handle_click(*mouse_pos, 1)
         elif mouse_buttons[2]:  # ПКМ
             editor.handle_click(*mouse_pos, 3)
+
+    # Отрисовка
+    screen.fill((30, 30, 40))
+
+    # Сдвиг для UI
+    pg.draw.rect(screen, (20, 20, 30), (0, 0, 150, 600))
+
+    # Карта
+    map_surface = pg.Surface((640, 480))
+    editor.draw(map_surface)
+    screen.blit(map_surface, (editor.offset_x, editor.offset_y))
+
+    # UI
+    editor.draw_ui(screen)
+
+    pg.display.flip()
+
+pg.quit()
