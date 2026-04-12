@@ -41,3 +41,11 @@ player = Player(100, 300)
 # Камера (простая - следует за игроком)
 camera_x = 0
 camera_y = 0
+
+running = True
+while running:
+    dt = clock.tick(60) / 1000.0
+
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
+            running = False
