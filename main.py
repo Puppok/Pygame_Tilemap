@@ -34,3 +34,10 @@ except FileNotFoundError:
     ]
     tilemap.width = 20
     tilemap.height = 15
+
+# Игрок
+player = Player(100, 300)
+
+# Камера (простая - следует за игроком)
+camera_x = 0
+camera_y = 0
