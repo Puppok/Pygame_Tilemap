@@ -54,3 +54,6 @@ while running:
             if event.key == pg.K_r and not player.alive:
                 # Перезапуск
                 player = Player(100, 300)
+
+    keys = pg.key.get_pressed()
+    player.update(dt, keys, tilemap)
